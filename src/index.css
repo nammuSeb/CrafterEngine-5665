@@ -31,6 +31,7 @@ body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
   font-family: system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
 }
 
 .app {
@@ -39,35 +40,49 @@ body {
   min-height: 100vh;
 }
 
-.container {
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 1rem;
+.main-content {
+  display: flex;
+  flex: 1;
+  position: relative;
 }
 
-/* Base Components */
-.button {
+.viewport {
+  flex: 1;
+  position: relative;
+  background-color: hsl(var(--card));
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 16rem;
+  border-right: 1px solid hsl(var(--border));
+  background-color: hsl(var(--background));
+}
+
+/* Buttons */
+.btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: var(--radius);
   font-weight: 500;
+  transition: all 0.2s;
   cursor: pointer;
-  transition: background-color 0.2s;
   padding: 0.5rem 1rem;
 }
 
-.button-primary {
+.btn-primary {
   background-color: hsl(var(--primary));
   color: hsl(var(--primary-foreground));
 }
 
-.button-secondary {
+.btn-secondary {
   background-color: hsl(var(--secondary));
   color: hsl(var(--secondary-foreground));
 }
 
-/* Layout */
+/* Layout utilities */
 .flex { display: flex; }
 .flex-col { flex-direction: column; }
 .items-center { align-items: center; }
@@ -76,8 +91,23 @@ body {
 .gap-4 { gap: 1rem; }
 .w-full { width: 100%; }
 .h-full { height: 100%; }
+
+/* Spacing */
 .p-4 { padding: 1rem; }
 .m-4 { margin: 1rem; }
 
-/* Utilities */
-.hidden { display: none; }
+/* Text */
+.text-sm { font-size: 0.875rem; }
+.text-lg { font-size: 1.125rem; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+
+/* Colors */
+.text-primary { color: hsl(var(--primary)); }
+.text-secondary { color: hsl(var(--secondary)); }
+.bg-background { background-color: hsl(var(--background)); }
+.bg-card { background-color: hsl(var(--card)); }
+
+/* Borders */
+.border { border: 1px solid hsl(var(--border)); }
+.rounded { border-radius: var(--radius); }

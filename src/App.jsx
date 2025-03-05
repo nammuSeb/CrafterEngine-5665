@@ -6,23 +6,28 @@ import ModesToolbar from './components/Layout/ModesToolbar';
 import Viewport3D from './components/Viewport/Viewport3D';
 import LayersPanel from './components/Layout/LayersPanel';
 import IDEPanel from './components/IDE/IDEPanel';
+import './App.css';
 
 function App() {
   return (
-    <motion.div
+    <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="h-screen bg-background text-gray-100 flex flex-col overflow-hidden"
+      className="app-container"
     >
       <TopBar />
-      <div className="flex flex-1 relative">
+      <div className="main-content">
         <ModesToolbar />
         <Sidebar />
-        <main className="flex-1">
+        <main className="viewport">
           <Viewport3D />
         </main>
         <LayersPanel />
         <IDEPanel />
+      </div>
+      <div className="status-bar">
+        <div>Ready</div>
+        <div>FPS: 60</div>
       </div>
     </motion.div>
   );
