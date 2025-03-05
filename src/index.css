@@ -1,33 +1,24 @@
 :root {
-  /* Dark theme inspired by modern game engines */
   --background: 222 47% 11%;
   --foreground: 213 31% 91%;
-  --card: 223 47% 14%;
-  --card-foreground: 213 31% 91%;
+  --muted: 223 47% 14%;
+  --muted-foreground: 215 20% 65%;
   --popover: 224 71% 4%;
   --popover-foreground: 215 20% 65%;
+  --card: 222 47% 14%;
+  --card-foreground: 213 31% 91%;
+  --border: 216 34% 17%;
+  --input: 216 34% 17%;
   --primary: 210 40% 98%;
   --primary-foreground: 222 47% 11%;
   --secondary: 222 47% 15%;
   --secondary-foreground: 210 40% 98%;
-  --muted: 223 47% 14%;
-  --muted-foreground: 215 20% 65%;
   --accent: 216 34% 17%;
   --accent-foreground: 210 40% 98%;
   --destructive: 0 63% 31%;
   --destructive-foreground: 210 40% 98%;
-  --border: 216 34% 17%;
-  --input: 216 34% 17%;
-  --ring: 224 71% 4%;
-  --radius: 0.25rem;
-
-  /* Custom colors */
-  --highlight: 199 89% 48%;
-  --success: 142 71% 45%;
-  --warning: 38 92% 50%;
-  --error: 0 84% 60%;
-  --grid-line: 220 13% 20%;
-  --selection: 199 89% 48% / 0.3;
+  --ring: 216 34% 17%;
+  --radius: 0.5rem;
 }
 
 * {
@@ -40,11 +31,91 @@ body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
   font-family: system-ui, -apple-system, sans-serif;
-  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+  position: relative;
   overflow: hidden;
 }
 
-/* Modern Scrollbar */
+.viewport {
+  flex: 1;
+  position: relative;
+  background-color: hsl(var(--card));
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 300px;
+  background-color: hsl(var(--card));
+  border-right: 1px solid hsl(var(--border));
+}
+
+.status-bar {
+  height: 28px;
+  background-color: hsl(var(--card));
+  border-top: 1px solid hsl(var(--border));
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  font-size: 0.75rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0.5rem;
+  border-right: 1px solid hsl(var(--border));
+}
+
+.status-item:last-child {
+  border-right: none;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+.btn-ghost {
+  color: hsl(var(--muted-foreground));
+}
+
+.btn-ghost:hover {
+  background-color: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -61,202 +132,6 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--accent));
-}
+}</QustAction>
 
-/* Modern Buttons */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius);
-  font-weight: 500;
-  font-size: 0.875rem;
-  transition: all 0.2s ease;
-  cursor: pointer;
-  border: 1px solid transparent;
-}
-
-.btn-primary {
-  background-color: hsl(var(--highlight));
-  color: hsl(var(--foreground));
-}
-
-.btn-primary:hover {
-  background-color: hsl(var(--highlight) / 0.9);
-}
-
-.btn-secondary {
-  background-color: hsl(var(--secondary));
-  color: hsl(var(--secondary-foreground));
-  border-color: hsl(var(--border));
-}
-
-.btn-secondary:hover {
-  background-color: hsl(var(--accent));
-}
-
-/* Modern Panels */
-.panel {
-  background-color: hsl(var(--card));
-  border: 1px solid hsl(var(--border));
-  border-radius: var(--radius);
-}
-
-.panel-header {
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid hsl(var(--border));
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: hsl(var(--accent));
-}
-
-.panel-title {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: hsl(var(--foreground));
-}
-
-.panel-content {
-  padding: 1rem;
-}
-
-/* Toolbar */
-.toolbar {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  background-color: hsl(var(--card));
-  border-bottom: 1px solid hsl(var(--border));
-}
-
-.toolbar-button {
-  padding: 0.5rem;
-  border-radius: var(--radius);
-  color: hsl(var(--muted-foreground));
-  transition: all 0.2s ease;
-}
-
-.toolbar-button:hover {
-  background-color: hsl(var(--accent));
-  color: hsl(var(--foreground));
-}
-
-.toolbar-button.active {
-  background-color: hsl(var(--highlight));
-  color: hsl(var(--foreground));
-}
-
-/* Grid & Layout */
-.grid {
-  display: grid;
-  gap: 1rem;
-}
-
-.flex {
-  display: flex;
-}
-
-.flex-col {
-  flex-direction: column;
-}
-
-.items-center {
-  align-items: center;
-}
-
-.justify-between {
-  justify-content: space-between;
-}
-
-.gap-2 {
-  gap: 0.5rem;
-}
-
-.gap-4 {
-  gap: 1rem;
-}
-
-/* Modern Forms */
-.input {
-  background-color: hsl(var(--input));
-  border: 1px solid hsl(var(--border));
-  border-radius: var(--radius);
-  padding: 0.5rem;
-  color: hsl(var(--foreground));
-  font-size: 0.875rem;
-  transition: all 0.2s ease;
-}
-
-.input:focus {
-  outline: none;
-  border-color: hsl(var(--highlight));
-  box-shadow: 0 0 0 2px hsl(var(--highlight) / 0.1);
-}
-
-/* Status Indicators */
-.status {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: var(--radius);
-  font-size: 0.75rem;
-  font-weight: 500;
-}
-
-.status-success {
-  background-color: hsl(var(--success) / 0.1);
-  color: hsl(var(--success));
-}
-
-.status-warning {
-  background-color: hsl(var(--warning) / 0.1);
-  color: hsl(var(--warning));
-}
-
-.status-error {
-  background-color: hsl(var(--error) / 0.1);
-  color: hsl(var(--error));
-}
-
-/* Selection & Focus States */
-.selectable:hover {
-  background-color: hsl(var(--accent));
-}
-
-.selected {
-  background-color: hsl(var(--selection));
-  border-color: hsl(var(--highlight));
-}
-
-/* Modern Tooltips */
-.tooltip {
-  position: relative;
-  display: inline-block;
-}
-
-.tooltip::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 0.25rem 0.5rem;
-  background-color: hsl(var(--popover));
-  color: hsl(var(--popover-foreground));
-  font-size: 0.75rem;
-  border-radius: var(--radius);
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.2s ease;
-}
-
-.tooltip:hover::after {
-  opacity: 1;
-  transform: translateX(-50%) translateY(-0.25rem);
-}
+<QuestAction type="shell">npm install && npm run build
