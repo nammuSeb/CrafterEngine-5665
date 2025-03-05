@@ -1,26 +1,32 @@
 import React from 'react';
+import { Button } from "@/components/ui/button";
+import { Tooltip } from "@/components/ui/tooltip";
 import { FaCube, FaPaintBrush, FaLandmark, FaTree, FaMagic } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 const ToolButton = ({ icon: Icon, label, active = false, onClick }) => (
-  <motion.button
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-    onClick={onClick}
-    className={`flex items-center gap-2 px-4 py-2 rounded-lg ${
-      active ? 'bg-primary text-white' : 'hover:bg-surface-dark text-gray-400'
-    }`}
-  >
-    <Icon className="text-lg" />
-    <span className="text-sm">{label}</span>
-  </motion.button>
+  <Tooltip content={`${label} Mode`}>
+    <motion.div
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      <Button
+        variant={active ? "secondary" : "ghost"}
+        className="flex items-center gap-2 px-4 py-2"
+        onClick={onClick}
+      >
+        <Icon className="h-4 w-4" />
+        <span className="text-sm">{label}</span>
+      </Button>
+    </motion.div>
+  </Tooltip>
 );
 
 const ModesToolbar = () => {
   const [activeMode, setActiveMode] = React.useState('Select');
 
   return (
-    <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-background-dark rounded-b-lg shadow-lg p-2 z-20">
+    <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 rounded-lg shadow-lg p-2 z-20">
       <div className="flex items-center gap-2">
         <ToolButton
           icon={FaCube}

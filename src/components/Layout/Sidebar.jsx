@@ -14,17 +14,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { 
-  FaLayerGroup, 
-  FaLightbulb, 
-  FaCamera, 
-  FaMountain, 
-  FaPlus 
-} from 'react-icons/fa';
+import { FaLayerGroup, FaLightbulb, FaCamera, FaMountain, FaPlus } from 'react-icons/fa';
 
 const SidebarItem = ({ icon: Icon, label, active, onClick }) => {
   return (
-    <Button
+    <Button 
       variant={active ? "secondary" : "ghost"}
       className="w-full justify-start gap-2"
       onClick={onClick}
@@ -48,11 +42,11 @@ const AssetsModal = ({ onClose }) => {
         <ScrollArea className="h-[calc(100vh-8rem)] pr-4">
           <div className="grid grid-cols-2 gap-4 pt-4">
             {Array.from({ length: 6 }).map((_, i) => (
-              <Card key={i}>
+              <Card key={i} className="bg-card border-border">
                 <CardHeader className="p-4">
                   <CardTitle className="text-sm">Asset {i + 1}</CardTitle>
                 </CardHeader>
-                <CardContent className="aspect-square bg-muted"></CardContent>
+                <CardContent className="aspect-square bg-muted" />
               </Card>
             ))}
           </div>
@@ -71,7 +65,7 @@ const Sidebar = () => {
       <div className="flex h-full flex-col gap-4 p-4">
         <Button 
           variant="default" 
-          className="w-full gap-2"
+          className="w-full gap-2" 
           onClick={() => setShowAssets(true)}
         >
           <FaPlus className="h-4 w-4" />
