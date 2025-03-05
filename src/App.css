@@ -1,3 +1,35 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* App specific styles */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+  position: relative;
+}
+
+.viewport {
+  flex: 1;
+  position: relative;
+  background-color: hsl(var(--card));
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 16rem;
+  border-right: 1px solid hsl(var(--border));
+  background-color: hsl(var(--background));
+}
+
+.panel {
+  background-color: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  padding: 1rem;
+}
