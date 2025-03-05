@@ -1,11 +1,12 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import TopBar from './components/Layout/TopBar';
 import Sidebar from './components/Layout/Sidebar';
 import ModesToolbar from './components/Layout/ModesToolbar';
 import Viewport3D from './components/Viewport/Viewport3D';
 import LayersPanel from './components/Layout/LayersPanel';
 import IDEPanel from './components/IDE/IDEPanel';
+import StatusBar from './components/Layout/StatusBar';
 import './App.css';
 
 function App() {
@@ -22,13 +23,12 @@ function App() {
         <main className="viewport">
           <Viewport3D />
         </main>
-        <LayersPanel />
-        <IDEPanel />
+        <AnimatePresence>
+          <LayersPanel />
+          <IDEPanel />
+        </AnimatePresence>
       </div>
-      <div className="status-bar">
-        <div>Ready</div>
-        <div>FPS: 60</div>
-      </div>
+      <StatusBar />
     </motion.div>
   );
 }

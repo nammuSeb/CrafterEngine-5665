@@ -1,7 +1,7 @@
 .app-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
 }
@@ -10,52 +10,152 @@
   display: flex;
   flex: 1;
   position: relative;
+  overflow: hidden;
 }
 
 .viewport {
   flex: 1;
   position: relative;
   background-color: hsl(var(--card));
-  border-radius: var(--radius);
   overflow: hidden;
 }
 
-.sidebar {
-  width: 16rem;
-  border-right: 1px solid hsl(var(--border));
-  background-color: hsl(var(--background));
+.viewport-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(to bottom, 
+    hsl(var(--background) / 0.9),
+    hsl(var(--background) / 0.7) 50%,
+    transparent
+  );
+  z-index: 10;
 }
 
-.panel {
+.sidebar {
+  width: 300px;
+  background-color: hsl(var(--card));
+  border-right: 1px solid hsl(var(--border));
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  padding: 1rem;
+  border-bottom: 1px solid hsl(var(--border));
+  background-color: hsl(var(--accent));
+}
+
+.top-bar {
+  height: 48px;
+  background-color: hsl(var(--card));
+  border-bottom: 1px solid hsl(var(--border));
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  gap: 1rem;
+}
+
+.mode-selector {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: hsl(var(--card));
   border: 1px solid hsl(var(--border));
   border-radius: var(--radius);
-  padding: 1rem;
+  padding: 0.25rem;
+  display: flex;
+  gap: 0.25rem;
+  z-index: 20;
 }
 
-.toolbar {
+.mode-button {
+  padding: 0.5rem 1rem;
+  border-radius: calc(var(--radius) - 0.125rem);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: hsl(var(--muted-foreground));
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem;
-  background-color: hsl(var(--card));
-  border-bottom: 1px solid hsl(var(--border));
 }
 
+.mode-button:hover {
+  background-color: hsl(var(--accent));
+  color: hsl(var(--foreground));
+}
+
+.mode-button.active {
+  background-color: hsl(var(--highlight));
+  color: hsl(var(--foreground));
+}
+
+.status-bar {
+  height: 28px;
+  background-color: hsl(var(--card));
+  border-top: 1px solid hsl(var(--border));
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  font-size: 0.75rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0.5rem;
+  border-right: 1px solid hsl(var(--border));
+}
+
+.status-item:last-child {
+  border-right: none;
+}
+
+/* Context Menu Styling */
+.context-menu {
+  background-color: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  padding: 0.25rem;
+  min-width: 160px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.context-menu-item {
+  padding: 0.5rem;
+  border-radius: calc(var(--radius) - 0.125rem);
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: hsl(var(--foreground));
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.context-menu-item:hover {
+  background-color: hsl(var(--accent));
+}
+
+.context-menu-shortcut {
+  color: hsl(var(--muted-foreground));
+  font-size: 0.75rem;
+}
+
+/* Canvas Container */
 .canvas-container {
-  position: relative;
   width: 100%;
   height: 100%;
   background-color: hsl(var(--background));
 }
 
-.status-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem 1rem;
-  background-color: hsl(var(--card));
-  border-top: 1px solid hsl(var(--border));
-  font-size: 0.875rem;
-  color: hsl(var(--muted-foreground));
+canvas {
+  width: 100%;
+  height: 100%;
 }
