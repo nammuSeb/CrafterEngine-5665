@@ -10,6 +10,9 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  optimizeDeps: {
+    include: ['zustand', 'zustand/middleware'],
+  },
   build: {
     outDir: 'dist',
     sourcemap: true,
@@ -26,7 +29,8 @@ export default defineConfig({
             'react',
             'react-dom',
             'framer-motion',
-            'zustand'
+            'zustand',
+            'zustand/middleware'
           ]
         }
       }

@@ -1,5 +1,11 @@
 import React from 'react';
-import { FaPlay, FaPause, FaSave, FaFolder } from 'react-icons/fa';
+import { Button } from "@/components/ui/button";
+import { 
+  FaPlay, 
+  FaPause, 
+  FaSave, 
+  FaFolder 
+} from 'react-icons/fa';
 import useStore from '../../store/store';
 
 const Header = () => {
@@ -13,16 +19,16 @@ const Header = () => {
   };
 
   return (
-    <header className="h-14 bg-surface border-b border-gray-700 px-4 flex items-center justify-between">
+    <header className="h-14 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border px-4 flex items-center justify-between">
       <div className="flex items-center gap-4">
-        <button className="p-2 hover:bg-background-dark rounded-lg">
-          <FaPlay className="text-primary" />
-        </button>
-        <button className="p-2 hover:bg-background-dark rounded-lg">
-          <FaPause className="text-gray-400" />
-        </button>
+        <Button variant="ghost" size="icon">
+          <FaPlay className="text-primary h-4 w-4" />
+        </Button>
+        <Button variant="ghost" size="icon">
+          <FaPause className="h-4 w-4" />
+        </Button>
       </div>
-      
+
       <div className="flex items-center gap-4">
         <input
           type="file"
@@ -31,21 +37,16 @@ const Header = () => {
           id="load-project"
           onChange={handleFileSelect}
         />
-        <label
-          htmlFor="load-project"
-          className="flex items-center gap-2 px-4 py-2 hover:bg-background-dark rounded-lg cursor-pointer"
-        >
-          <FaFolder className="text-gray-400" />
-          <span className="text-gray-300">Load</span>
+        <label htmlFor="load-project">
+          <Button variant="outline" className="gap-2">
+            <FaFolder className="h-4 w-4" />
+            <span>Load</span>
+          </Button>
         </label>
-        
-        <button
-          onClick={saveProject}
-          className="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary-dark rounded-lg text-white"
-        >
-          <FaSave />
+        <Button onClick={saveProject} className="gap-2">
+          <FaSave className="h-4 w-4" />
           <span>Save Project</span>
-        </button>
+        </Button>
       </div>
     </header>
   );

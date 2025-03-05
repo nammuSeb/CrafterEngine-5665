@@ -1,28 +1,40 @@
-import React from 'react';
-import { Button } from "@/components/ui/button";
+import React from 'react'
+import { Button } from "@/components/ui/button"
 import {
   Sheet,
   SheetContent,
   SheetDescription,
   SheetHeader,
   SheetTitle,
-} from "@/components/ui/sheet";
+} from "@/components/ui/sheet"
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { 
-  FaLayerGroup, 
-  FaLightbulb, 
-  FaCamera, 
-  FaMountain, 
-  FaPlus 
-} from 'react-icons/fa';
+} from "@/components/ui/card"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import {
+  FaLayerGroup,
+  FaLightbulb,
+  FaCamera,
+  FaMountain,
+  FaPlus
+} from 'react-icons/fa'
 
-const SidebarItem = ({ icon: Icon, label, active, onClick }) => {
+interface SidebarItemProps {
+  icon: React.ElementType;
+  label: string;
+  active?: boolean;
+  onClick?: () => void;
+}
+
+const SidebarItem: React.FC<SidebarItemProps> = ({
+  icon: Icon,
+  label,
+  active,
+  onClick
+}) => {
   return (
     <Button
       variant={active ? "secondary" : "ghost"}
@@ -32,10 +44,14 @@ const SidebarItem = ({ icon: Icon, label, active, onClick }) => {
       <Icon className="h-4 w-4" />
       <span>{label}</span>
     </Button>
-  );
-};
+  )
+}
 
-const AssetsModal = ({ onClose }) => {
+interface ModalProps {
+  onClose: () => void;
+}
+
+const AssetsModal: React.FC<ModalProps> = ({ onClose }) => {
   return (
     <Sheet>
       <SheetContent side="right" className="w-[400px] sm:w-[540px]">
@@ -59,18 +75,18 @@ const AssetsModal = ({ onClose }) => {
         </ScrollArea>
       </SheetContent>
     </Sheet>
-  );
-};
+  )
+}
 
-const Sidebar = () => {
-  const [activeItem, setActiveItem] = React.useState(null);
-  const [showAssets, setShowAssets] = React.useState(false);
+const Sidebar: React.FC = () => {
+  const [activeItem, setActiveItem] = React.useState<string | null>(null)
+  const [showAssets, setShowAssets] = React.useState(false)
 
   return (
     <div className="w-64 border-r bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="flex h-full flex-col gap-4 p-4">
-        <Button 
-          variant="default" 
+        <Button
+          variant="default"
           className="w-full gap-2"
           onClick={() => setShowAssets(true)}
         >
@@ -108,7 +124,7 @@ const Sidebar = () => {
         {showAssets && <AssetsModal onClose={() => setShowAssets(false)} />}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar
